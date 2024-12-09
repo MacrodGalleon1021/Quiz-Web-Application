@@ -1,0 +1,45 @@
+-- Create the database
+CREATE DATABASE IF NOT EXISTS quiz_app;
+
+-- Use the quiz_app database
+USE quiz_app;
+
+-- Create users table
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL
+);
+
+-- Create quiz_questions table
+CREATE TABLE quiz_questions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    question_text TEXT NOT NULL,
+    option_a VARCHAR(255) NOT NULL,
+    option_b VARCHAR(255) NOT NULL,
+    option_c VARCHAR(255) NOT NULL,
+    option_d VARCHAR(255) NOT NULL,
+    correct_option CHAR(1) NOT NULL
+);
+
+-- Create quiz_results table
+CREATE TABLE quiz_results (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    score INT NOT NULL,
+    time_taken TIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- Insert new English subject quiz questions
+INSERT INTO quiz_questions (question_text, option_a, option_b, option_c, option_d, correct_option) VALUES
+('What is the main theme of Shakespeare\'s "Romeo and Juliet"?', 'Love', 'War', 'Friendship', 'Betrayal', 'A'),
+('Which of the following is a synonym for "happy"?', 'Sad', 'Joyful', 'Angry', 'Tired', 'B'),
+('What is the correct past tense of "go"?', 'Gone', 'Went', 'Going', 'Go', 'B'),
+('Which literary device involves the repetition of consonant sounds?', 'Alliteration', 'Metaphor', 'Simile', 'Personification', 'A'),
+('What is the main idea of a text called?', 'Theme', 'Plot', 'Setting', 'Character', 'A'),
+('Which of the following is an example of a simile?', 'He is a lion in battle.', 'Her smile is like sunshine.', 'Time is a thief.', 'The wind whispered through the trees.', 'B'),
+('What is the purpose of a thesis statement?', 'To summarize the text', 'To present the main argument', 'To provide examples', 'To conclude the essay', 'B'),
+('Which punctuation mark is used to indicate a question?', 'Period', 'Comma', 'Question mark', 'Exclamation mark', 'C'),
+('What is the term for a story’s underlying message or lesson?', 'Moral', 'Conflict', 'Climax', 'Resolution', 'A'),
+('Which of the following is a type of poem?', 'Novel', 'Sonnet', 'Essay', 'Biography', 'B');
